@@ -65,8 +65,8 @@ router.afterEach((to, from, failure) => {
 }
 
 .title {
-  color: black;
   margin-left: 16px;
+  color: black;
 }
 
 .logo {

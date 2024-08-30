@@ -27,18 +27,18 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 }
 
 #basicLayout .Content {
-  background: linear-gradient(to right, #fefefe, #fff);
   margin-bottom: 28px;
   padding: 20px;
+  background: linear-gradient(to right, #fefefe, #fff);
 }
 
 #basicLayout .footer {
-  background: #f5e1e1;
-  padding: 20px;
   position: fixed;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  padding: 20px;
   text-align: center;
+  background: #f5e1e1;
 }
 </style>
