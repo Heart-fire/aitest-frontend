@@ -21,11 +21,17 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 </script>
 <!--为了防止冲突，先找basicLayout下面的ID-->
 <style scoped>
+#basicLayout .Header {
+  margin-bottom: 16px;
+  box-shadow: #eee 1px 1px 5px;
+}
+
 #basicLayout .Content {
   background: linear-gradient(to right, #fefefe, #fff);
   margin-bottom: 28px;
   padding: 20px;
 }
+
 #basicLayout .footer {
   background: #f5e1e1;
   padding: 20px;
