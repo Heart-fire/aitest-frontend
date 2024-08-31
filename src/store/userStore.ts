@@ -15,7 +15,7 @@ export const useLoginUserStore = defineStore("loginUser", () => {
     if (res.data.code === 0 && res.data.data) {
       loginUser.value = res.data.data;
     } else {
-      loginUser.value = { userRole: ACCESS_ENUM.ADMIN };
+      loginUser.value = { userRole: ACCESS_ENUM.NOT_LOGIN };
     }
   }
 

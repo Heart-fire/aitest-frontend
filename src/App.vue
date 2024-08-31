@@ -1,3 +1,4 @@
+<!--------------------------------全局初始化函数，有全局单次调用的代码，都可以写到这里-->
 <template>
   <div id="app">
     <template v-if="route.path.startsWith('/user')">

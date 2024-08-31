@@ -1,4 +1,4 @@
-// 项目的全局入口文件
+// 项目的全局入口文件,一些逻辑仅在进入页面中执行一次,可写在main中
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
