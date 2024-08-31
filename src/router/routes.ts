@@ -1,17 +1,21 @@
 import { RouteRecordRaw } from "vue-router";
-import HomeView from "@/views/HomeView.vue";
 import UserLayout from "@/layouts/userLayout.vue";
 import ACCESS_ENUM from "@/access/accessEnum";
 import NoAuthPath from "@/views/NoAuthPage.vue";
 import userLoginPage from "@/user/userLoginPage.vue";
 import userRegisterPage from "@/user/userRegisterPage.vue";
 import AdminUserPage from "@/views/admin/AdminUserPage.vue";
+import AdminAppPage from "@/views/admin/AdminAppPage.vue";
+import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
+import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
+import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
+import HomePage from "@/views/HomePage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "主页",
+    component: HomePage,
   },
   {
     path: "/noAuth",
@@ -25,6 +29,14 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/admin/user",
     name: "用户管理",
     component: AdminUserPage,
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/admin/app",
+    name: "应用管理",
+    component: AdminAppPage,
     meta: {
       access: ACCESS_ENUM.ADMIN,
     },
@@ -48,11 +60,5 @@ export const routes: Array<RouteRecordRaw> = [
         component: userRegisterPage,
       },
     ],
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
 ];
