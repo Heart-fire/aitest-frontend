@@ -22,7 +22,10 @@
       </a-menu>
     </a-col>
     <a-col flex="100px">
-      <div>
+      <div v-if="loginUserStore.loginUser.id">
+        {{ loginUserStore.loginUser.userName ?? "无名" }}
+      </div>
+      <div v-else>
         <a-button type="primary">登录</a-button>
       </div>
     </a-col>
@@ -30,30 +33,42 @@
 </template>
 
 <script setup lang="ts">
-import { routes } from "@/router/routes";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { routes } from "@/router/routes";
+import { useLoginUserStore } from "@/store/userStore";
+import checkAccess from "@/access/checkAccess";
 
-const router = useRouter();
+const loginUserStore = useLoginUserStore();
 // 路由跳转事件
+const router = useRouter();
 const doMenuClick = (key: string) => {
   router.push({
     path: key,
   });
 };
+
 // 展示在菜单的路由数组,因为[隐藏页面]的hideInMenu默认未true
-const visibleRoutes = routes.filter((item) => {
-  if (item.meta?.hideInMenu) {
-    return false;
-  }
-  return true;
+// 问题：用户已经有登录管理权限，但是页面没有刷新
+// 用compute封装：只要有变量改变，重新计算定义变量的值，重新触发函数计算，用route返回
+const visibleRoutes = computed(() => {
+  return routes.filter((item) => {
+    if (item.meta?.hideInMenu) {
+      return false;
+    }
+    // 根据权限过滤菜单
+    if (!checkAccess(loginUserStore.loginUser, item.meta?.access as string)) {
+      return false;
+    }
+    return true;
+  });
 });
 
 // 同步路由的更新到菜单项高亮，使用Vue Router 的afterEach的路由钩子实现
 // Tab 栏中的菜单项
 const selectedKeys = ref(["/"]);
 // 路由跳转后,更新选中的菜单项
-router.afterEach((to, from, failure) => {
+router.afterEach((to) => {
   selectedKeys.value = [to.path];
 });
 </script>
