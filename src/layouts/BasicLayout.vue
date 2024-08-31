@@ -10,7 +10,9 @@
         <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
-        <a href="https://www.code-nav.cn" target="_blank">脚部</a>
+        <a href="https://github.com/Heart-fire" target="_blank"
+          >✅✅✅用户可以基于AI快速制作并发布多种答题应用</a
+        >
       </a-layout-footer>
     </a-layout>
   </div>
@@ -27,18 +29,28 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 }
 
 #basicLayout .Content {
-  margin-bottom: 28px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto 28px;
   padding: 20px;
   background: linear-gradient(to right, #fefefe, #fff);
 }
 
 #basicLayout .footer {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
-  background: #f5e1e1;
+  background: #ffffff;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1); /* 添加阴影线 */
+}
+
+a {
+  color: #2d2d2d;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1a58b0; /* 设置鼠标悬停时的链接颜色 */
 }
 </style>

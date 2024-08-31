@@ -1,6 +1,7 @@
 <template>
   <a-row id="globalHeader" align="center" wrap="false">
-    <a-col flex="auto">
+    <!-- 主要导航部分 -->
+    <a-col flex="1">
       <a-menu
         mode="horizontal"
         :selected-keys="selectedKeys"
@@ -21,8 +22,17 @@
         </a-menu-item>
       </a-menu>
     </a-col>
-    <a-col flex="100px">
-      <div v-if="loginUserStore.loginUser.id">
+    <!-- 头像和昵称部分 -->
+    <a-col
+      flex="none"
+      :style="{ display: 'flex', alignItems: 'center', minWidth: '120px' }"
+    >
+      <div v-if="loginUserStore.loginUser.id" style="white-space: nowrap">
+        <a-avatar
+          :size="33"
+          :image-url="loginUserStore.loginUser.userAvatar"
+          :style="{ marginRight: '10px' }"
+        />
         {{ loginUserStore.loginUser.userName ?? "无名" }}
       </div>
       <div v-else>
@@ -33,11 +43,22 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, defineProps, ref, withDefaults } from "vue";
 import { useRouter } from "vue-router";
 import { routes } from "@/router/routes";
 import { useLoginUserStore } from "@/store/userStore";
 import checkAccess from "@/access/checkAccess";
+import API from "@/api";
+
+interface Props {
+  app: API.AppVO;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  app: () => {
+    return {};
+  },
+});
 
 const loginUserStore = useLoginUserStore();
 // 路由跳转事件
