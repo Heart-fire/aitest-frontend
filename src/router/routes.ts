@@ -35,6 +35,7 @@ export const routes: Array<RouteRecordRaw> = [
       hideInMenu: true,
     },
   },
+  // 创建题目
   {
     path: "/add/question/:appId",
     name: "创建题目",
