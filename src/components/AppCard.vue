@@ -11,7 +11,11 @@
         }"
       >
         <img
-          :style="{ width: '100%', transform: 'translateY(-20px)' }"
+          :style="{
+            width: '100%',
+            height: '95%',
+            transform: 'translateY(-20px)',
+          }"
           alt="dessert"
           :src="app.appIcon"
         />

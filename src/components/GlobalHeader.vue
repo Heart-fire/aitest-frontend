@@ -23,17 +23,26 @@
       </a-menu>
     </a-col>
     <!-- 头像和昵称部分 -->
+    <!-- TODO 完成退出登录和个人信息 -->
     <a-col
       flex="none"
       :style="{ display: 'flex', alignItems: 'center', minWidth: '120px' }"
     >
       <div v-if="loginUserStore.loginUser.id" style="white-space: nowrap">
-        <a-avatar
-          :size="33"
-          :image-url="loginUserStore.loginUser.userAvatar"
-          :style="{ marginRight: '10px' }"
-        />
-        {{ loginUserStore.loginUser.userName ?? "无名" }}
+        <a-space>
+          <a-popover trigger="click" style="width: 100px">
+            <a-avatar
+              trigger="click"
+              :size="33"
+              :image-url="loginUserStore.loginUser.userAvatar"
+              :style="{ marginRight: '10px' }"
+            />
+            <template #content>
+              <button>123</button>
+            </template>
+          </a-popover>
+          {{ loginUserStore.loginUser.userName ?? "无名" }}
+        </a-space>
       </div>
       <div v-else>
         <a-button type="primary" href="/user/login">登录</a-button>

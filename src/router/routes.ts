@@ -10,6 +10,10 @@ import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
 import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
 import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
 import HomePage from "@/views/HomePage.vue";
+import AppDetailPage from "@/app/AppDetailPage.vue";
+import AddAppPage from "@/add/AddAppPage.vue";
+import AddQuestionPage from "@/add/AddQuestionPage.vue";
+import AddScoringResultPage from "@/add/AddScoringResultPage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -18,9 +22,50 @@ export const routes: Array<RouteRecordRaw> = [
     component: HomePage,
   },
   {
+    path: "/add/app",
+    name: "创建应用",
+    component: AddAppPage,
+  },
+  {
+    path: "/add/app/:id",
+    name: "修改应用",
+    props: true,
+    component: AddAppPage,
+    meta: {
+      hideInMenu: true,
+    },
+  },
+  {
+    path: "/add/question/:appId",
+    name: "创建题目",
+    component: AddQuestionPage,
+    props: true,
+    meta: {
+      hideInMenu: true,
+    },
+  },
+  {
+    path: "/add/scoring_result/:appId",
+    name: "创建评分",
+    component: AddScoringResultPage,
+    props: true,
+    meta: {
+      hideInMenu: true,
+    },
+  },
+  {
     path: "/noAuth",
     name: "无权限",
     component: NoAuthPath,
+    meta: {
+      hideInMenu: true,
+    },
+  },
+  {
+    path: "/app/detail/:id",
+    name: "应用详情页",
+    props: true,
+    component: AppDetailPage,
     meta: {
       hideInMenu: true,
     },
