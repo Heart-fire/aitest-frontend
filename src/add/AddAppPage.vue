@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-for -->
 <template>
   <div id="addAppPage">
     <h2 style="margin-bottom: 32px">创建应用</h2>
@@ -17,12 +18,6 @@
       <a-form-item field="appIcon" label="应用图标">
         <a-input v-model="form.appIcon" placeholder="请输入应用图标" />
       </a-form-item>
-      <!--      <a-form-item field="appIcon" label="应用图标">-->
-      <!--        <PictureUploader-->
-      <!--          :value="form.appIcon"-->
-      <!--          :onChange="(value) => (form.appIcon = value)"-->
-      <!--        />-->
-      <!--      </a-form-item>-->
       <a-form-item field="appType" label="应用类型">
         <a-select
           v-model="form.appType"
