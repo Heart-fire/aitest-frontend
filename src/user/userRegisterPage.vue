@@ -1,48 +1,89 @@
 <template>
-  <div id="userRegisterPage">
-    <h2 style="margin-bottom: 16px">用户注册</h2>
-    <a-form
-      :model="form"
-      :style="{ width: '480px', margin: '0 auto' }"
-      label-align="left"
-      auto-label-width
-      @submit="handleSubmit"
-    >
-      <a-form-item field="userAccount" label="账号">
-        <a-input v-model="form.userAccount" placeholder="请输入账号" />
-      </a-form-item>
-      <a-form-item field="userPassword" tooltip="密码不小于 8 位" label="密码">
-        <a-input-password
-          v-model="form.userPassword"
-          placeholder="请输入密码"
-        />
-      </a-form-item>
-      <a-form-item
-        field="checkPassword"
-        tooltip="确认密码不小于 8 位"
-        label="确认密码"
+  <div id="big">
+    <div class="big-two"></div>
+    <div id="userRegisterPage" class="login-page">
+      <h2>用户注册</h2>
+      <a-form
+        :model="form"
+        :style="{ width: '480px', margin: '0 auto' }"
+        label-align="left"
+        auto-label-width
+        @submit="handleSubmit"
       >
-        <a-input-password
-          v-model="form.checkPassword"
-          placeholder="请输入确认密码"
-        />
-      </a-form-item>
-      <a-form-item>
-        <div
-          style="
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: space-between;
-          "
-        >
-          <a-button type="primary" html-type="submit" style="width: 120px">
-            注册
-          </a-button>
-          <a-link href="/user/login">老用户登录</a-link>
+        <div class="input-group">
+          <icon-user-add class="icon" size="20px" />
+          <a-form-item field="userAccount" label="账号">
+            <a-input
+              class="input-field"
+              v-model="form.userAccount"
+              placeholder="请输入账号"
+            />
+          </a-form-item>
         </div>
-      </a-form-item>
-    </a-form>
+        <div class="input-group">
+          <icon-code class="icon" size="20px" />
+          <a-form-item
+            field="userPassword"
+            tooltip="密码不小于 8 位"
+            label="密码"
+          >
+            <a-input-password
+              v-model="form.userPassword"
+              class="input-field"
+              placeholder="请输入密码"
+            />
+          </a-form-item>
+        </div>
+        <div class="input-group">
+          <icon-code class="icon" size="20px" />
+          <a-form-item
+            field="checkPassword"
+            tooltip="确认密码不小于 8 位"
+            label="确认密码"
+          >
+            <a-input-password
+              v-model="form.checkPassword"
+              class="input-field"
+              placeholder="请输入确认密码"
+            />
+          </a-form-item>
+        </div>
+        <a-form-item>
+          <div class="actions">
+            <a-button
+              class="submit-button"
+              type="primary"
+              html-type="submit"
+              style="width: 120px"
+            >
+              注册
+            </a-button>
+            <a-link class="register-link" href="/user/login" type="outline"
+              >老用户登录
+            </a-link>
+          </div>
+        </a-form-item>
+        <div class="other-login-methods">
+          <span
+            >或使用以下方注册: （暂未实现）
+            <div class="social-logins">
+              <a-button shape="circle" type="outline">
+                <icon-qq />
+              </a-button>
+              <a-button shape="circle" type="outline">
+                <icon-wechat />
+              </a-button>
+              <a-button shape="circle" type="outline">
+                <icon-lark-color />
+              </a-button>
+              <a-button shape="circle" type="outline">
+                <icon-github />
+              </a-button>
+            </div>
+          </span>
+        </div>
+      </a-form>
+    </div>
   </div>
 </template>
 
@@ -77,3 +118,86 @@ const handleSubmit = async () => {
   }
 };
 </script>
+<style scoped>
+#big {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.big-two {
+  flex: 1;
+  width: 200px;
+  background-image: url("https://wbe-tilas.oss-cn-hangzhou.aliyuncs.com/ed85f5c7-53ee-4e52-b32b-e7c155066281.jpg"); /* 替换为实际的图片 URL */
+  background-position: center; /*图片覆盖整个背景*/
+  background-size: cover; /* 居中图片 */
+  border-radius: 8px 0 0 8px;
+}
+
+#userRegisterPage {
+  flex: 1;
+  width: 500px;
+  margin: 0 auto; /* 居中 */
+  padding: 30px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-page h2 {
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  margin-right: 10px;
+  margin-bottom: 20px;
+  color: #999;
+}
+
+.input-field {
+  width: 100%;
+  max-width: 400px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: auto;
+}
+
+.submit-button {
+  width: 100px;
+  margin-right: 170px;
+}
+
+.register-link {
+  margin-left: 20px;
+}
+
+.other-login-methods {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-logins {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.social-logins a-button {
+  width: 100px;
+}
+</style>
