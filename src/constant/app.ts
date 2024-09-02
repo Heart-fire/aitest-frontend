@@ -40,5 +40,5 @@ export const APP_SCORING_STRATEGY_ENUM = {
 // 应用评分策略映射
 export const APP_SCORING_STRATEGY_MAP = {
   0: "自定义",
-  1: "AI",
+  1: "AI评分",
 };

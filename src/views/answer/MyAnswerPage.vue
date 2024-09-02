@@ -33,6 +33,7 @@
     </a-form-item>
   </a-form>
   <a-table
+    :scroll="scroll"
     :columns="columns"
     :data="dataList"
     :pagination="{
@@ -46,9 +47,7 @@
     <template #resultPicture="{ record }">
       <a-image width="64" :src="record.resultPicture" />
     </template>
-    <template #appType="{ record }">
-      {{ APP_TYPE_MAP[record.appType] }}
-    </template>
+
     <template #scoringStrategy="{ record }">
       {{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
     </template>
@@ -58,9 +57,22 @@
     <template #updateTime="{ record }">
       {{ dayjs(record.updateTime).format("YYYY-MM-DD HH:mm:ss") }}
     </template>
+    <template #appType="{ record }">
+      <a-space>
+        <a-button :status="record.appType === 0 ? 'warning' : 'success'"
+          >{{ APP_TYPE_MAP[record.appType] }}
+        </a-button>
+      </a-space>
+    </template>
     <template #optional="{ record }">
       <a-space>
-        <a-button status="danger" @click="doDelete(record)">删除</a-button>
+        <a-popconfirm
+          content="您确定要删除吗?"
+          @ok="doDelete(record)"
+          type="warning"
+        >
+          <a-button status="danger">删除</a-button>
+        </a-popconfirm>
       </a-space>
     </template>
   </a-table>
@@ -77,6 +89,10 @@ import message from "@arco-design/web-vue/es/message";
 import { dayjs } from "@arco-design/web-vue/es/_utils/date";
 import { APP_SCORING_STRATEGY_MAP, APP_TYPE_MAP } from "@/constant/app";
 
+const scroll = {
+  x: 1700,
+  y: 1200,
+};
 const formSearchParams = ref<API.UserAnswerQueryRequest>({});
 
 // 初始化搜索条件（不应该被修改）
@@ -156,6 +172,8 @@ watchEffect(() => {
 const columns = [
   {
     title: "id",
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "id",
   },
   {
@@ -188,22 +206,27 @@ const columns = [
     dataIndex: "appId",
   },
   {
-    title: "应用类型",
-    dataIndex: "appType",
-    slotName: "appType",
-  },
-  {
     title: "评分策略",
     dataIndex: "scoringStrategy",
     slotName: "scoringStrategy",
   },
   {
     title: "创建时间",
+    width: 170,
     dataIndex: "createTime",
     slotName: "createTime",
   },
   {
+    title: "应用类型",
+    fixed: "right",
+    width: 120,
+    dataIndex: "appType",
+    slotName: "appType",
+  },
+  {
     title: "操作",
+    fixed: "right",
+    width: 150,
     slotName: "optional",
   },
 ];

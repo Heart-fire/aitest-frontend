@@ -27,6 +27,7 @@
     </a-form-item>
   </a-form>
   <a-table
+    :scroll="scroll"
     :columns="columns"
     :data="dataList"
     :pagination="{
@@ -40,6 +41,13 @@
     <template #userAvatar="{ record }">
       <a-image width="64" :src="record.userAvatar" />
     </template>
+    <template #userRole="{ record }">
+      <a-space>
+        <a-tag :color="record.userRole === 'admin' ? 'red' : 'green'">
+          {{ record.userRole === "admin" ? "管理员" : "普通用户" }}
+        </a-tag>
+      </a-space>
+    </template>
     <template #createTime="{ record }">
       {{ dayjs(record.createTime).format("YYYY-MM-DD HH:mm:ss") }}
     </template>
@@ -48,7 +56,13 @@
     </template>
     <template #optional="{ record }">
       <a-space>
-        <a-button status="danger" @click="doDelete(record)">删除</a-button>
+        <a-popconfirm
+          content="您确定要删除吗?"
+          @ok="doDelete(record)"
+          type="warning"
+        >
+          <a-button status="danger">删除</a-button>
+        </a-popconfirm>
       </a-space>
     </template>
   </a-table>
@@ -63,7 +77,12 @@ import {
 import API from "@/api";
 import message from "@arco-design/web-vue/es/message";
 import { dayjs } from "@arco-design/web-vue/es/_utils/date";
+import { useLoginUserStore } from "../../store/userStore";
 
+const scroll = {
+  x: 1700,
+  y: 1000,
+};
 const formSearchParams = ref<API.UserQueryRequest>({});
 
 // 初始化搜索条件（不应该被修改）
@@ -142,6 +161,9 @@ watchEffect(() => {
 const columns = [
   {
     title: "id",
+    ellipsis: true,
+    tooltip: true,
+    width: 150,
     dataIndex: "id",
   },
   {
@@ -164,6 +186,7 @@ const columns = [
   {
     title: "权限",
     dataIndex: "userRole",
+    slotName: "userRole",
   },
   {
     title: "创建时间",
@@ -177,6 +200,8 @@ const columns = [
   },
   {
     title: "操作",
+    fixed: "right",
+    width: 150,
     slotName: "optional",
   },
 ];

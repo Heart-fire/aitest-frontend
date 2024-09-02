@@ -26,6 +26,7 @@
     </a-form-item>
   </a-form>
   <a-table
+    :scroll="scroll"
     :columns="columns"
     :data="dataList"
     :pagination="{
@@ -37,16 +38,7 @@
     @page-change="onPageChange"
   >
     <template #appIcon="{ record }">
-      <a-image width="64" :src="record.appIcon" />
-    </template>
-    <template #appType="{ record }">
-      {{ APP_TYPE_MAP[record.appType] }}
-    </template>
-    <template #scoringStrategy="{ record }">
-      {{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
-    </template>
-    <template #reviewStatus="{ record }">
-      {{ REVIEW_STATUS_MAP[record.reviewStatus] }}
+      <a-image width="80" height="50" :src="record.appIcon" />
     </template>
     <template #reviewTime="{ record }">
       {{
@@ -59,6 +51,40 @@
     </template>
     <template #updateTime="{ record }">
       {{ dayjs(record.updateTime).format("YYYY-MM-DD HH:mm:ss") }}
+    </template>
+    <!--------------------------------------------------应用类型-->
+    <template #appType="{ record }">
+      <a-space>
+        <a-tag :color="record.appType === 0 ? '#0fc6c2' : '#ffb400'"
+          >{{ APP_TYPE_MAP[record.appType] }}
+        </a-tag>
+      </a-space>
+    </template>
+    <!--------------------------------------------------评分策略-->
+    <template #scoringStrategy="{ record }">
+      <a-space>
+        <a-tag
+          bordered
+          :color="record.scoringStrategy === 0 ? 'green' : 'magenta'"
+          >{{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
+        </a-tag>
+      </a-space>
+    </template>
+    <!--------------------------------------------------审核状态-->
+    <template #reviewStatus="{ record }">
+      <a-space>
+        <a-tag
+          bordered
+          :color="
+            record.reviewStatus === 0
+              ? 'orange'
+              : record.reviewStatus === 1
+              ? 'green'
+              : 'red'
+          "
+          >{{ REVIEW_STATUS_MAP[record.reviewStatus] }}
+        </a-tag>
+      </a-space>
     </template>
     <template #optional="{ record }">
       <a-space>
@@ -76,7 +102,15 @@
         >
           拒绝
         </a-button>
-        <a-button status="danger" @click="doDelete(record)">删除</a-button>
+        <a-space>
+          <a-popconfirm
+            content="您确定要删除吗?"
+            @ok="doDelete(record)"
+            type="warning"
+          >
+            <a-button status="danger">删除</a-button>
+          </a-popconfirm>
+        </a-space>
       </a-space>
     </template>
   </a-table>
@@ -99,6 +133,10 @@ import {
   REVIEW_STATUS_MAP,
 } from "@/constant/app";
 
+const scroll = {
+  x: 2500,
+  y: 2000,
+};
 const formSearchParams = ref<API.AppQueryRequest>({});
 
 // 初始化搜索条件（不应该被修改）
@@ -204,6 +242,9 @@ watchEffect(() => {
 const columns = [
   {
     title: "id",
+    ellipsis: true,
+    tooltip: true,
+    width: 100,
     dataIndex: "id",
   },
   {
@@ -231,6 +272,7 @@ const columns = [
   },
   {
     title: "审核状态",
+    width: 100,
     dataIndex: "reviewStatus",
     slotName: "reviewStatus",
   },
@@ -263,6 +305,8 @@ const columns = [
   },
   {
     title: "操作",
+    fixed: "right",
+    width: 230,
     slotName: "optional",
   },
 ];

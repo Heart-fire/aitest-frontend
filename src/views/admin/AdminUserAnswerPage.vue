@@ -40,6 +40,7 @@
     </a-form-item>
   </a-form>
   <a-table
+    :scroll="scroll"
     :columns="columns"
     :data="dataList"
     :pagination="{
@@ -53,11 +54,23 @@
     <template #resultPicture="{ record }">
       <a-image width="64" :src="record.resultPicture" />
     </template>
+    <!--------------------------------------------------应用类型-->
     <template #appType="{ record }">
-      {{ APP_TYPE_MAP[record.appType] }}
+      <a-space>
+        <a-tag :color="record.appType === 0 ? '#0fc6c2' : '#ffb400'"
+          >{{ APP_TYPE_MAP[record.appType] }}
+        </a-tag>
+      </a-space>
     </template>
+    <!--------------------------------------------------评分策略-->
     <template #scoringStrategy="{ record }">
-      {{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
+      <a-space>
+        <a-tag
+          bordered
+          :color="record.scoringStrategy === 0 ? 'green' : 'magenta'"
+          >{{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
+        </a-tag>
+      </a-space>
     </template>
     <template #createTime="{ record }">
       {{ dayjs(record.createTime).format("YYYY-MM-DD HH:mm:ss") }}
@@ -67,7 +80,15 @@
     </template>
     <template #optional="{ record }">
       <a-space>
-        <a-button status="danger" @click="doDelete(record)">删除</a-button>
+        <a-space>
+          <a-popconfirm
+            content="您确定要删除吗?"
+            @ok="doDelete(record)"
+            type="warning"
+          >
+            <a-button status="danger">删除</a-button>
+          </a-popconfirm>
+        </a-space>
       </a-space>
     </template>
   </a-table>
@@ -84,6 +105,10 @@ import message from "@arco-design/web-vue/es/message";
 import { dayjs } from "@arco-design/web-vue/es/_utils/date";
 import { APP_SCORING_STRATEGY_MAP, APP_TYPE_MAP } from "@/constant/app";
 
+const scroll = {
+  x: 2000,
+  y: 1200,
+};
 const formSearchParams = ref<API.UserAnswerQueryRequest>({});
 
 // 初始化搜索条件（不应该被修改）
@@ -166,6 +191,9 @@ const columns = [
   },
   {
     title: "选项",
+    ellipsis: true,
+    tooltip: true,
+    width: 250,
     dataIndex: "choices",
   },
   {
@@ -186,6 +214,11 @@ const columns = [
     slotName: "resultPicture",
   },
   {
+    title: "应用类型",
+    dataIndex: "appType",
+    slotName: "appType",
+  },
+  {
     title: "得分",
     dataIndex: "resultScore",
   },
@@ -194,31 +227,33 @@ const columns = [
     dataIndex: "appId",
   },
   {
-    title: "应用类型",
-    dataIndex: "appType",
-    slotName: "appType",
-  },
-  {
     title: "评分策略",
     dataIndex: "scoringStrategy",
     slotName: "scoringStrategy",
   },
   {
     title: "用户 id",
+    width: 170,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "userId",
   },
   {
     title: "创建时间",
+    width: 170,
     dataIndex: "createTime",
     slotName: "createTime",
   },
   {
     title: "更新时间",
+    width: 170,
     dataIndex: "updateTime",
     slotName: "updateTime",
   },
   {
     title: "操作",
+    fixed: "right",
+    width: 120,
     slotName: "optional",
   },
 ];

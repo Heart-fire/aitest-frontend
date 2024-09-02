@@ -3,16 +3,16 @@
     <a-layout style="min-height: 100vh">
       <a-layout-header class="header">
         <a-space>
-          <img src="../assets/logo.png" class="logo" />
-          <div>AI 答题应用平台</div>
+          <img src="../assets/logo.png" class="logo" alt="image" />
+          <div>AI智汇答题平台</div>
         </a-space>
       </a-layout-header>
       <a-layout-content class="content">
         <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
-        <a href="https://www.code-nav.cn" target="_blank">
-          编程导航 by 程序员鱼皮
+        <a href="https://github.com/Heart-fire" target="_blank">
+          ✅✅✅用户可以基于AI快速制作并发布多种答题应用
         </a>
       </a-layout-footer>
     </a-layout>
@@ -32,7 +32,8 @@
 }
 
 #userLayout .header {
-  margin-top: 16px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   font-size: 21px;
 }
 
@@ -48,5 +49,15 @@
   left: 0;
   padding: 16px;
   text-align: center;
+}
+
+a {
+  color: #2d2d2d;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1a58b0; /* 设置鼠标悬停时的链接颜色 */
 }
 </style>

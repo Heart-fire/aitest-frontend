@@ -40,6 +40,7 @@
     </a-form-item>
   </a-form>
   <a-table
+    :scroll="scroll"
     :columns="columns"
     :data="dataList"
     :pagination="{
@@ -61,7 +62,15 @@
     </template>
     <template #optional="{ record }">
       <a-space>
-        <a-button status="danger" @click="doDelete(record)">删除</a-button>
+        <a-space>
+          <a-popconfirm
+            content="您确定要删除吗?"
+            @ok="doDelete(record)"
+            type="warning"
+          >
+            <a-button status="danger">删除</a-button>
+          </a-popconfirm>
+        </a-space>
       </a-space>
     </template>
   </a-table>
@@ -76,7 +85,10 @@ import {
 import API from "@/api";
 import message from "@arco-design/web-vue/es/message";
 import { dayjs } from "@arco-design/web-vue/es/_utils/date";
-
+const scroll = {
+  x: 1700,
+  y: 1200,
+};
 const formSearchParams = ref<API.ScoringResultQueryRequest>({});
 
 // 初始化搜索条件（不应该被修改）
@@ -163,6 +175,7 @@ const columns = [
   },
   {
     title: "描述",
+    width: 250,
     dataIndex: "resultDesc",
   },
   {
@@ -188,16 +201,20 @@ const columns = [
   },
   {
     title: "创建时间",
+    width: 170,
     dataIndex: "createTime",
     slotName: "createTime",
   },
   {
     title: "更新时间",
+    width: 170,
     dataIndex: "updateTime",
     slotName: "updateTime",
   },
   {
     title: "操作",
+    fixed: "right",
+    width: 120,
     slotName: "optional",
   },
 ];

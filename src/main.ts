@@ -6,8 +6,14 @@ import { createPinia } from "pinia";
 import ArcoVue from "@arco-design/web-vue";
 import "@arco-design/web-vue/dist/arco.css";
 import "@/access";
+import ArcoVueIcon from "@arco-design/web-vue/es/icon";
 
 // 全局状态管理，引入Pinia
 const pinia = createPinia();
 
-createApp(App).use(pinia).use(ArcoVue).use(router).mount("#app");
+createApp(App)
+  .use(ArcoVueIcon)
+  .use(pinia)
+  .use(ArcoVue)
+  .use(router)
+  .mount("#app");
