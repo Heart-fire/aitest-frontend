@@ -13,7 +13,7 @@
         <img
           :style="{
             width: '100%',
-            height: '95%',
+            height: '90%',
             transform: 'translateY(-20px)',
           }"
           alt="dessert"
@@ -21,7 +21,19 @@
         />
       </div>
     </template>
-    <a-card-meta :title="app.appName" :description="app.appDesc">
+    <a-card-meta :title="app.appName">
+      <template #description>
+        <div
+          :style="{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            maxWidth: '100%',
+          }"
+        >
+          {{ app.appDesc }}
+        </div>
+      </template>
       <template #avatar>
         <div
           :style="{ display: 'flex', alignItems: 'center', color: '#1D2129' }"

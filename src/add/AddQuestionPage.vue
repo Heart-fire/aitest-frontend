@@ -1,6 +1,5 @@
 <template>
   <div id="addQuestionPage">
-    {{ questionContent }}
     <h2 style="margin-bottom: 32px">设置题目</h2>
     <a-form
       :model="questionContent"
