@@ -91,7 +91,7 @@
         <a-button
           v-if="record.reviewStatus !== REVIEW_STATUS_ENUM.PASS"
           status="success"
-          @click="doReview(record, REVIEW_STATUS_ENUM.PASS, '已符合上架要求')"
+          @click="doReview(record, REVIEW_STATUS_ENUM.PASS, '')"
         >
           通过
         </a-button>
@@ -143,8 +143,6 @@ const formSearchParams = ref<API.AppQueryRequest>({});
 const initSearchParams = {
   current: 1,
   pageSize: 10,
-  sortField: "createTime",
-  sortOrder: "descend",
 };
 
 const searchParams = ref<API.AppQueryRequest>({
