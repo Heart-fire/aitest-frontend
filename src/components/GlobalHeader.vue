@@ -14,7 +14,7 @@
         >
           <div class="title-bar">
             <img class="logo" src="../assets/logo.png" />
-            <div class="title">AI答题</div>
+            <div class="title">AI智汇答题</div>
           </div>
         </a-menu-item>
         <a-menu-item v-for="item in visibleRoutes" :key="item.path">
@@ -30,22 +30,79 @@
     >
       <div v-if="loginUserStore.loginUser.id" style="white-space: nowrap">
         <a-space>
-          <a-popover trigger="click" style="width: 100px">
+          <a-popover trigger="hover" style="width: 122px; padding: 0">
             <a-avatar
-              trigger="click"
               :size="33"
               :image-url="loginUserStore.loginUser.userAvatar"
               :style="{ marginRight: '10px' }"
             />
             <template #content>
-              <button>123</button>
+              <div class="menu-item">
+                <a-link class="Tou">
+                  <icon-user class="icon" size="15px" />
+                  个人信息
+                </a-link>
+              </div>
+              <div class="menu-item">
+                <a-link class="Tou">
+                  <icon-home class="icon" size="15px" />
+                  个人信息
+                </a-link>
+              </div>
+              <div class="menu-item">
+                <a-link class="Tou">
+                  <icon-home class="icon" size="15px" />
+                  个人信息
+                </a-link>
+              </div>
+              <a-popconfirm
+                content="是否登出"
+                position="bottom"
+                type="warning"
+                @ok="logout"
+              >
+                <a-link status="danger">退出登录</a-link>
+              </a-popconfirm>
             </template>
           </a-popover>
           {{ loginUserStore.loginUser.userName ?? "无名" }}
         </a-space>
       </div>
+
       <div v-else>
-        <a-button type="primary" href="/user/login">登录</a-button>
+        <a-popover
+          class="title-two"
+          title="登录后您可以:"
+          position="br"
+          style="width: 290px; height: 150px"
+        >
+          <a-button type="primary" href="/user/login"> 登录</a-button>
+          <template #content>
+            <div class="tooltip">
+              <div class="text">
+                <div class="item">
+                  <icon-home class="icon" size="15px" />
+                  <div class="line">创建答题应用</div>
+                </div>
+                <div class="item">
+                  <icon-user class="icon" size="15px" />
+                  <div class="line">享受优先服务</div>
+                </div>
+                <div class="item">
+                  <icon-thumb-up class="icon" size="15px" />
+                  <div class="line">自定义评分规则</div>
+                </div>
+                <div class="item">
+                  <icon-robot-add class="icon" size="15px" />
+                  <div class="line">AI快速生成题目</div>
+                </div>
+              </div>
+            </div>
+            <a-button type="primary" href="/user/login" class="button-one">
+              立即登录
+            </a-button>
+          </template>
+        </a-popover>
       </div>
     </a-col>
   </a-row>
@@ -58,6 +115,8 @@ import { routes } from "@/router/routes";
 import { useLoginUserStore } from "@/store/userStore";
 import checkAccess from "@/access/checkAccess";
 import API from "@/api";
+import { userLogoutUsingPost } from "@/api/userController";
+import message from "@arco-design/web-vue/es/message";
 
 interface Props {
   app: API.AppVO;
@@ -101,9 +160,25 @@ const selectedKeys = ref(["/"]);
 router.afterEach((to) => {
   selectedKeys.value = [to.path];
 });
+
+const logout = async () => {
+  const res = await userLogoutUsingPost();
+  if (res.data.code === 0) {
+    message.success("退出成功");
+  } else {
+    message.error("退出失败，" + res.data.message);
+  }
+  //刷新页面的函数
+  window.location.reload();
+};
 </script>
 <!--为了防止冲突，先找basicLayout下面的ID-->
 <style scoped>
+.title-two {
+  display: flex;
+  align-items: center;
+}
+
 .title-bar {
   display: flex;
   align-items: center;
@@ -121,5 +196,62 @@ router.afterEach((to) => {
 #globalHeader {
   box-sizing: border-box;
   width: 100%;
+}
+
+.tooltip {
+  display: flex;
+  align-items: center;
+}
+
+.text .item {
+  display: flex;
+  align-items: center; /* 垂直居中对齐图标和文本 */
+}
+
+.tooltip .icon {
+  margin-right: 5px;
+}
+
+.tooltip .text {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 两列布局 */
+  gap: 15px; /* 控制列间距 */
+}
+
+.text .line {
+  margin-bottom: 2px; /* 控制行间距 */
+}
+
+.button-one {
+  width: 250px;
+  margin: 10px auto 0;
+  background-color: #1890ff;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin: 0; /* 去掉外边距 */
+  padding: 0; /* 去掉内边距 */
+}
+
+.menu-item .icon {
+  margin-right: 5px; /* 控制图标和文字之间的间距 */
+}
+
+.Tou {
+  display: flex;
+  align-items: center; /* 图标和文字垂直居中 */
+  box-sizing: border-box;
+  width: 100%; /* 链接宽度占满父容器 */
+  padding: 5px 0;
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent; /* 默认背景色透明 */
+  transition: background-color 0.3s; /* 背景色过渡效果 */
+}
+
+.Tou:hover {
+  background-color: #f0f0f0; /* 鼠标滑过时的背景色 */
 }
 </style>

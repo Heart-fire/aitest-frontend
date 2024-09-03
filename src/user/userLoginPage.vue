@@ -40,7 +40,7 @@
               class="submit-button"
               type="primary"
               html-type="submit"
-              style="width: 120px"
+              style="width: 110px; background-color: #1386f1"
             >
               登录
             </a-button>
@@ -51,18 +51,18 @@
         </a-form-item>
         <div class="other-login-methods">
           <span
-            >或使用以下方式登录: （暂未实现）
+            >使用其他方法注册: （暂未实现）
             <div class="social-logins">
-              <a-button shape="circle" type="outline">
-                <icon-qq-circle-fill />
+              <a-button shape="circle" status="warning">
+                <icon-qq />
               </a-button>
-              <a-button shape="circle" type="outline">
+              <a-button shape="circle" status="warning">
                 <icon-wechat />
               </a-button>
-              <a-button shape="circle" type="outline">
+              <a-button shape="circle" status="warning">
                 <icon-lark-color />
               </a-button>
-              <a-button shape="circle" type="outline">
+              <a-button shape="circle" status="warning">
                 <icon-github />
               </a-button>
             </div>
@@ -135,7 +135,7 @@ const handleSubmit = async () => {
   text-align: center;
   background-color: #fff;
   border-radius: 0 8px 8px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .login-page h2 {
@@ -175,15 +175,15 @@ const handleSubmit = async () => {
 }
 
 .other-login-methods {
-  margin-top: 20px;
+  margin-top: 98px;
   text-align: center;
 }
 
 .social-logins {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .social-logins a-button {
