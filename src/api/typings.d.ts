@@ -17,6 +17,12 @@ declare namespace API {
     userId?: number;
   };
 
+  type AiGenerateQuestionRequest = {
+    appId?: number;
+    optionNumber?: number;
+    questionNumber?: number;
+  };
+
   type AppAddRequest = {
     appDesc?: string;
     appIcon?: string;
@@ -709,6 +715,12 @@ declare namespace API {
     appId?: number;
     choices?: string[];
     id?: number;
+  };
+
+  type BaseResponseListQuestionContentDTO_ = {
+    code?: number;
+    data?: QuestionContentDTO[];
+    message?: string;
   };
 
   type UserAnswerQueryRequest = {
