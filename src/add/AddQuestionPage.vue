@@ -98,6 +98,7 @@
         <a-button type="primary" html-type="submit" style="width: 120px">
           提交
         </a-button>
+        <a-back-top />
       </a-form-item>
     </a-form>
   </div>
@@ -267,3 +268,7 @@ const onSSEClose = (event: any) => {
   message.success("生成完毕");
 };
 </script>
+<style>
+#addQuestionPage {
+}
+</style>
