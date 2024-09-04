@@ -1,6 +1,6 @@
 <template>
   <div id="doAnswerPage">
-    <a-card>
+    <a-card class="card-b">
       <h1>{{ app.appName }}</h1>
       <p>{{ app.appDesc }}</p>
       <h2 style="margin-bottom: 16px">
@@ -33,7 +33,7 @@
             :disabled="!currentAnswer"
             @click="doSubmit"
           >
-            {{ submitting ? "评分中" : "查看结果" }}
+            {{ submitting ? "AI评分中🤖" : "查看结果" }}
           </a-button>
           <a-button v-if="current > 1" circle @click="current -= 1">
             上一题
@@ -190,3 +190,12 @@ const doSubmit = async () => {
   submitting.value = false;
 };
 </script>
+<style>
+.card-b {
+  width: 1100px;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 9px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 边框阴影 */
+}
+</style>

@@ -179,7 +179,9 @@ watchEffect(() => {
 const columns = [
   {
     title: "id",
-    width: 80,
+    width: 120,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "id",
   },
   {
@@ -197,6 +199,9 @@ const columns = [
   },
   {
     title: "结果属性",
+    width: 200,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "resultProp",
   },
   {

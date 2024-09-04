@@ -167,6 +167,8 @@ watchEffect(() => {
 const columns = [
   {
     title: "id",
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "id",
   },
   {

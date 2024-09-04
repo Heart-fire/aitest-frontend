@@ -1,14 +1,14 @@
 <template>
   <div id="answerResultPage">
-    <a-card>
+    <a-card class="card-a">
       <a-row style="margin-bottom: 16px">
         <a-col flex="auto" class="content-wrapper">
           <h2>{{ data.resultName }}</h2>
-          <p>结果描述：{{ data.resultDesc }}</p>
-          <p>结果 id：{{ data.resultId }}</p>
-          <p>结果得分：{{ data.resultScore }}</p>
-          <p>我的答案：{{ data.choices }}</p>
+          <h3>结果描述：{{ data.resultDesc }}</h3>
           <p>应用 id：{{ data.appId }}</p>
+          <p>结果得分：{{ data.resultScore }}</p>
+          <p>回答结果 id：{{ data.resultId }}</p>
+          <p>我的答案：{{ data.choices }}</p>
           <p>应用类型：{{ APP_TYPE_MAP[data.appType] }}</p>
           <p>评分策略：{{ APP_SCORING_STRATEGY_MAP[data.scoringStrategy] }}</p>
           <p>
@@ -93,6 +93,11 @@ watchEffect(() => {
 
 <style scoped>
 #answerResultPage {
+}
+
+.card-a {
+  width: 1160px;
+  margin: 0 auto;
 }
 
 #answerResultPage .content-wrapper > * {

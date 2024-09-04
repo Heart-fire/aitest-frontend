@@ -206,6 +206,9 @@ const columns = [
   },
   {
     title: "描述",
+    width: 250,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "resultDesc",
   },
   {

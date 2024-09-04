@@ -16,10 +16,13 @@
           <a-button @click="addQuestion(questionContent.length)">
             底部添加题目
           </a-button>
-          <!-- AI生成题目 -->
+          <!-- AI 生成抽屉 -->
           <AiGenerateQuestionDrawer
             :appId="appId"
             :onSuccess="onAiGenerateSuccess"
+            :onSSESuccess="onAiGenerateSuccessSSE"
+            :onSSEClose="onSSEClose"
+            :onSSEStart="onSSEStart"
           />
         </a-space>
         <!-- 遍历每道题目 -->
@@ -227,16 +230,40 @@ const handleSubmit = async () => {
     message.success("操作成功，即将跳转到应用详情页");
     setTimeout(() => {
       router.push(`/app/detail/${props.appId}`);
-    }, 1100);
+    }, 3000);
   } else {
     message.error("操作失败，" + res.data.message);
   }
 };
+
 /**
  * AI 生成题目成功后执行
  */
 const onAiGenerateSuccess = (result: API.QuestionContentDTO[]) => {
-  message.success(`AI 生成题目成功 ${result.length} 道题目`);
+  message.success(`AI 生成题目成功，生成 ${result.length} 道题目`);
   questionContent.value = [...questionContent.value, ...result];
+};
+
+/**
+ * AI 生成题目成功后执行（SSE）
+ */
+const onAiGenerateSuccessSSE = (result: API.QuestionContentDTO) => {
+  questionContent.value = [...questionContent.value, result];
+};
+
+/**
+ * SSE 开始生成
+ * @param event
+ */
+const onSSEStart = (event: any) => {
+  message.success("开始生成");
+};
+
+/**
+ * SSE 生成完毕
+ * @param event
+ */
+const onSSEClose = (event: any) => {
+  message.success("生成完毕");
 };
 </script>

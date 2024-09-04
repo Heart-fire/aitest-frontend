@@ -47,9 +47,15 @@
     <template #resultPicture="{ record }">
       <a-image width="64" :src="record.resultPicture" />
     </template>
-
+    <!--------------------------------------------------评分策略-->
     <template #scoringStrategy="{ record }">
-      {{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
+      <a-space>
+        <a-tag
+          bordered
+          :color="record.scoringStrategy === 0 ? 'green' : 'magenta'"
+          >{{ APP_SCORING_STRATEGY_MAP[record.scoringStrategy] }}
+        </a-tag>
+      </a-space>
     </template>
     <template #createTime="{ record }">
       {{ dayjs(record.createTime).format("YYYY-MM-DD HH:mm:ss") }}
@@ -178,18 +184,27 @@ const columns = [
   },
   {
     title: "选项",
+    width: 180,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "choices",
   },
   {
-    title: "结果 id",
+    title: "结果序号",
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "resultId",
   },
   {
     title: "名称",
+    width: 150,
     dataIndex: "resultName",
   },
   {
     title: "描述",
+    width: 250,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "resultDesc",
   },
   {
@@ -203,6 +218,8 @@ const columns = [
   },
   {
     title: "应用 id",
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "appId",
   },
   {
@@ -219,14 +236,14 @@ const columns = [
   {
     title: "应用类型",
     fixed: "right",
-    width: 120,
+    width: 105,
     dataIndex: "appType",
     slotName: "appType",
   },
   {
     title: "操作",
     fixed: "right",
-    width: 150,
+    width: 110,
     slotName: "optional",
   },
 ];

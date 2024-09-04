@@ -1,6 +1,6 @@
 <template>
   <div id="appDetailPage">
-    <a-card>
+    <a-card class="card">
       <a-row style="margin-bottom: 16px">
         <a-col flex="auto" class="content-wrapper">
           <h1>{{ data.appName }}</h1>
@@ -39,8 +39,8 @@
             <a-button v-if="isMy" :href="`/add/app/${id}`">修改应用</a-button>
           </a-space>
         </a-col>
-        <a-col flex="350px">
-          <a-image width="100%" :src="data.appIcon" />
+        <a-col flex="330px">
+          <a-image width="400px" height="250px" :src="data.appIcon" />
         </a-col>
       </a-row>
     </a-card>
@@ -123,6 +123,14 @@ const doShare = (e: Event) => {
 
 <style scoped>
 #appDetailPage {
+}
+
+.card {
+  width: 1150px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #ffffff, #ffffff, #ffffff);
+  border-radius: 9px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 边框阴影 */
 }
 
 #appDetailPage .content-wrapper > * {

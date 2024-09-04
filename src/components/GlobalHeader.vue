@@ -30,38 +30,43 @@
     >
       <div v-if="loginUserStore.loginUser.id" style="white-space: nowrap">
         <a-space>
-          <a-popover trigger="hover" style="width: 122px; padding: 0">
+          <a-popover trigger="hover" style="width: 120px">
             <a-avatar
               :size="33"
               :image-url="loginUserStore.loginUser.userAvatar"
               :style="{ marginRight: '10px' }"
             />
             <template #content>
-              <div class="menu-item">
-                <a-link class="Tou">
-                  <icon-user class="icon" size="15px" />
-                  个人信息
-                </a-link>
-              </div>
-              <div class="menu-item">
-                <a-link class="Tou">
-                  <icon-home class="icon" size="15px" />
-                  个人信息
-                </a-link>
-              </div>
-              <div class="menu-item">
-                <a-link class="Tou">
-                  <icon-home class="icon" size="15px" />
-                  个人信息
-                </a-link>
-              </div>
+              <!--              <div class="menu-item">-->
+              <!--                <a-link class="Tou">-->
+              <!--                  <icon-user class="icon" />-->
+              <!--                  个人信息-->
+              <!--                </a-link>-->
+              <!--              </div>-->
+              <!--              <div class="menu-item">-->
+              <!--                <a-link class="Tou">-->
+              <!--                  <icon-home class="icon" />-->
+              <!--                  个人信息-->
+              <!--                </a-link>-->
+              <!--              </div>-->
+              <!--              <div class="menu-item">-->
+              <!--                <a-link class="Tou">-->
+              <!--                  <icon-home class="icon" />-->
+              <!--                  个人信息-->
+              <!--                </a-link>-->
+              <!--              </div>-->
               <a-popconfirm
                 content="是否登出"
                 position="bottom"
                 type="warning"
                 @ok="logout"
               >
-                <a-link status="danger">退出登录</a-link>
+                <div class="menu-item">
+                  <a-link status="danger">
+                    <icon-export class="icon" />
+                    退出登录
+                  </a-link>
+                </div>
               </a-popconfirm>
             </template>
           </a-popover>
@@ -236,19 +241,14 @@ const logout = async () => {
 }
 
 .menu-item .icon {
-  margin-right: 5px; /* 控制图标和文字之间的间距 */
+  margin-right: 6px; /* 控制图标和文字之间的间距 */
 }
 
 .Tou {
-  display: flex;
-  align-items: center; /* 图标和文字垂直居中 */
+  display: block;
   box-sizing: border-box;
-  width: 100%; /* 链接宽度占满父容器 */
   padding: 5px 0;
   color: inherit;
-  text-decoration: none;
-  background-color: transparent; /* 默认背景色透明 */
-  transition: background-color 0.3s; /* 背景色过渡效果 */
 }
 
 .Tou:hover {

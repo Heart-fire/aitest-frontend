@@ -53,6 +53,8 @@ import { REVIEW_STATUS_ENUM } from "@/constant/app";
 const initSearchParams = {
   current: 1,
   pageSize: 8,
+  sortField: "createTime",
+  sortOrder: "descend",
 };
 // 将 initSearchParams 对象中的所有属性展开并复制到 searchParams 对象中
 const searchParams = ref<API.UserQueryRequest>({

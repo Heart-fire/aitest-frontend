@@ -13,8 +13,9 @@
         <img
           :style="{
             width: '100%',
-            height: '90%',
-            transform: 'translateY(-20px)',
+            height: '190px',
+            transform:
+              'translateY(-10px)' /*向上移动20像素（负值代表向上，正值代表向下）*/,
           }"
           alt="dessert"
           :src="app.appIcon"
