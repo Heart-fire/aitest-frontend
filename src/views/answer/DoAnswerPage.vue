@@ -72,7 +72,6 @@ const props = withDefaults(defineProps<Props>(), {
     return "";
   },
 });
-
 const router = useRouter();
 
 const app = ref<API.AppVO>({});

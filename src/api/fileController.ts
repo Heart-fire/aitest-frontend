@@ -32,7 +32,6 @@ export async function uploadFileUsingPost(
     }
   });
 
-
   return request<API.BaseResponseString_>("/api/file/upload", {
     method: "POST",
     params: {
@@ -43,4 +42,4 @@ export async function uploadFileUsingPost(
     requestType: "form",
     ...(options || {}),
   });
-}
+}// @ts-ignore

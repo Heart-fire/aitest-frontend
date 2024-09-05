@@ -1,5 +1,16 @@
-// 与Model实体类一一对应
 declare namespace API {
+  type AiGenerateQuestionRequest = {
+    appId?: number;
+    optionNumber?: number;
+    questionNumber?: number;
+  };
+
+  type aiGenerateQuestionSSEUsingGETParams = {
+    appId?: number;
+    optionNumber?: number;
+    questionNumber?: number;
+  };
+
   type App = {
     appDesc?: string;
     appIcon?: string;
@@ -15,12 +26,6 @@ declare namespace API {
     scoringStrategy?: number;
     updateTime?: string;
     userId?: number;
-  };
-
-  type AiGenerateQuestionRequest = {
-    appId?: number;
-    optionNumber?: number;
-    questionNumber?: number;
   };
 
   type AppAddRequest = {
@@ -105,6 +110,12 @@ declare namespace API {
   type BaseResponseInt_ = {
     code?: number;
     data?: number;
+    message?: string;
+  };
+
+  type BaseResponseListQuestionContentDTO_ = {
+    code?: number;
+    data?: QuestionContentDTO[];
     message?: string;
   };
 
@@ -663,6 +674,10 @@ declare namespace API {
     userId?: number;
   };
 
+  type SseEmitter = {
+    timeout?: number;
+  };
+
   type uploadFileUsingPOSTParams = {
     biz?: string;
   };
@@ -709,18 +724,13 @@ declare namespace API {
   type UserAnswerAddRequest = {
     appId?: number;
     choices?: string[];
+    id?: number;
   };
 
   type UserAnswerEditRequest = {
     appId?: number;
     choices?: string[];
     id?: number;
-  };
-
-  type BaseResponseListQuestionContentDTO_ = {
-    code?: number;
-    data?: QuestionContentDTO[];
-    message?: string;
   };
 
   type UserAnswerQueryRequest = {
