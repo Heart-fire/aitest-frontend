@@ -34,7 +34,7 @@
             <a-avatar
               :size="33"
               :image-url="loginUserStore.loginUser.userAvatar"
-              :style="{ marginRight: '10px' }"
+              :style="{ marginRight: '5px' }"
             />
             <template #content>
               <!--              <div class="menu-item">-->
@@ -70,7 +70,14 @@
               </a-popconfirm>
             </template>
           </a-popover>
-          {{ loginUserStore.loginUser.userName ?? "无名" }}
+          <a-tag
+            checkable
+            color="arcoblue"
+            :default-checked="false"
+            style="font-size: 15px"
+          >
+            {{ loginUserStore.loginUser.userName ?? "无名" }}
+          </a-tag>
         </a-space>
       </div>
 
