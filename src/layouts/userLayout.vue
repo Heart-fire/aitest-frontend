@@ -12,7 +12,7 @@
       </a-layout-content>
       <a-layout-footer class="footer">
         <a href="https://github.com/Heart-fire" target="_blank">
-          ✅✅✅用户可以基于AI快速制作并发布多种答题应用
+          很多生活中的失败是因为人们在放弃的时候不知道他们离成功已经有多么近了。————————爱迪生
         </a>
       </a-layout-footer>
     </a-layout>

@@ -11,7 +11,7 @@
       </a-layout-content>
       <a-layout-footer class="footer">
         <a href="https://github.com/Heart-fire" target="_blank"
-          >✅✅✅用户可以基于AI快速制作并发布多种答题应用</a
+          >天才是1%的灵感加上99%的汗水。——爱迪生</a
         >
       </a-layout-footer>
     </a-layout>
