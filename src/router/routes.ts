@@ -58,14 +58,14 @@ export const routes: Array<RouteRecordRaw> = [
       hideInMenu: true,
     },
   },
-  {
-    path: "/noAuth",
-    name: "无权限",
-    component: NoAuthPath,
-    meta: {
-      hideInMenu: true,
-    },
-  },
+  // {
+  //   path: "/noAuth",
+  //   name: "无权限",
+  //   component: NoAuthPath,
+  //   meta: {
+  //     hideInMenu: true,
+  //   },
+  // },
   {
     path: "/app/detail/:id",
     name: "应用详情页",
@@ -147,9 +147,9 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/app_statistic",
     name: "应用统计",
     component: AppStatisticPage,
-    meta: {
-      access: ACCESS_ENUM.ADMIN,
-    },
+    // meta: {
+    //   access: ACCESS_ENUM.ADMIN,
+    // },
   },
   {
     path: "/user",

@@ -33,11 +33,42 @@
     >
       <div v-if="loginUserStore.loginUser.id" style="white-space: nowrap">
         <a-space>
+          <a href="https://github.com/Heart-fire" target="_blank">
+            <icon-github class="github" />
+          </a>
+          <!-- ---------------------------------------------WIFI-->
+          <icon-wifi class="wifi" />
+          <!-- ----------------------------------------------提示-->
+          <a-popover position="bottom" style="width: 300px">
+            <a-space :size="40" style="margin-right: 15px">
+              <a-badge :count="0" dot :offset="[2, -2]">
+                <icon-notification
+                  :style="{
+                    color: '#3b3838',
+                    fontSize: '21px',
+                    verticalAlign: '-3px',
+                  }"
+                />
+              </a-badge>
+            </a-space>
+            <template #content>
+              <p style="color: #2d2d2d">简单介绍:</p>
+              <hr style="color: #566170" />
+              <p>
+                管理员已将<b>应用统计</b>界面开放
+                <hr style="color: #566170" />
+                SpringBoot+Redis+ChatGLM+RxJava+SSE(+Vue3+Arco
+                Design+Pinia)的Al答题应用平台。<br />
+                用户可基于AI快速生成题目并制作应用,经管理员审核后，可在线答题并基于多种评分算法或AI得到回答总结；管理员还可集中管理整站内容，并进行统计分析。
+              </p>
+            </template>
+          </a-popover>
           <a-popover trigger="hover" style="width: 120px">
+            <!-- ------------------------------------------头像部分-->
             <a-avatar
               :size="33"
               :image-url="loginUserStore.loginUser.userAvatar"
-              :style="{ marginRight: '5px' }"
+              :style="{ marginRight: '1px' }"
             />
             <template #content>
               <!--              <div class="menu-item">-->
@@ -73,14 +104,23 @@
               </a-popconfirm>
             </template>
           </a-popover>
-          <a-tag
-            checkable
-            color="arcoblue"
-            :default-checked="false"
-            style="font-size: 15px"
-          >
-            {{ loginUserStore.loginUser.userName ?? "无名" }}
-          </a-tag>
+          <!-- ----------------------------------------------------名字太长隐藏显示-->
+          <a-tooltip :content="loginUserStore.loginUser.userName ?? '无名'">
+            <a-tag
+              checkable
+              color="cyan"
+              :default-checked="false"
+              style="
+                font-size: 15px;
+                max-width: 100px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              "
+            >
+              {{ loginUserStore.loginUser.userName ?? "无名" }}
+            </a-tag>
+          </a-tooltip>
         </a-space>
       </div>
 
@@ -263,5 +303,25 @@ const logout = async () => {
 
 .Tou:hover {
   background-color: #f0f0f0; /* 鼠标滑过时的背景色 */
+}
+
+.github {
+  margin-right: 18px;
+  color: #3b3838;
+  font-size: 18px;
+}
+
+.wifi {
+  margin-right: 18px;
+  color: #3b3838;
+  font-size: 22px;
+}
+
+.github:hover {
+  color: #3b63e5;
+}
+
+.wifi:hover {
+  color: #3b63e5;
 }
 </style>

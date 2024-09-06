@@ -6,6 +6,9 @@
           <h1>{{ data.appName }}</h1>
           <p>简介：{{ data.appDesc }}</p>
           <p>应用类型：{{ APP_TYPE_MAP[data.appType] }}</p>
+          <div tooltip="Please enter username">
+            <p>应用ID：{{ data.id }}</p>
+          </div>
           <p>评分策略：{{ APP_SCORING_STRATEGY_MAP[data.scoringStrategy] }}</p>
           <p>
             <a-space>

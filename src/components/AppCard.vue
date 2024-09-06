@@ -55,7 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import { IconShareInternal } from "@arco-design/web-vue/es/icon";
 import API from "@/api";
 import { defineProps, ref, withDefaults } from "vue";
 import { useRouter } from "vue-router";

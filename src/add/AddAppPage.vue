@@ -9,7 +9,11 @@
       auto-label-width
       @submit="handleSubmit"
     >
-      <a-form-item field="appName" label="应用名称">
+      <a-form-item
+        field="appName"
+        tooltip="创建应用后由管理员统一进行审核,审核成功后可进行后续操作✍️"
+        label="应用名称"
+      >
         <a-input v-model="form.appName" placeholder="请输入应用名称" />
       </a-form-item>
       <a-form-item field="appDesc" label="应用描述">

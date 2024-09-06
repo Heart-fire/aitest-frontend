@@ -1,7 +1,7 @@
 <!-- 写法: 最外层先定义一个ID与页面的名称一致-->
 <template>
   <div id="appStatisticPage">
-    <a-tooltip content="例如输入 1 " position="right">
+    <a-tooltip content="友好提示: 例如输入 1 " position="right">
       <h2 style="width: 130px; margin-bottom: 15px">应用结果统计</h2>
     </a-tooltip>
     <div class="search-bar">
@@ -19,7 +19,10 @@
       style="height: 350px; margin-left: 250px"
     />
     <h2>热门应用统计</h2>
-    <v-chart :option="appAnswerCountOptions" style="height: 320px" />
+    <v-chart
+      :option="appAnswerCountOptions"
+      style="height: 500px; width: 1400px"
+    />
   </div>
 </template>
 
@@ -71,8 +74,21 @@ const loadAppAnswerResultCountData = async (appId: string) => {
  */
 const appAnswerCountOptions = computed(() => {
   return {
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+    },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true,
+    },
     xAxis: {
       type: "category",
+      axisLabel: { interval: 0, rotate: 30 }, //将应用ID横向展示
       data: appAnswerCountList.value.map((item) => item.appId),
       name: "应用 ID",
     },
