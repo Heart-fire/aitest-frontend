@@ -14,7 +14,10 @@
         >
           <div class="title-bar">
             <img class="logo" src="../assets/logo.png" />
-            <div class="title">AI智汇答题</div>
+            <div class="title">
+              AI智汇答题
+              <b>[体验版]</b>
+            </div>
           </div>
         </a-menu-item>
         <a-menu-item v-for="item in visibleRoutes" :key="item.path">
@@ -197,7 +200,7 @@ const logout = async () => {
 }
 
 .title {
-  margin-left: 16px;
+  margin-left: 20px;
   color: black;
 }
 

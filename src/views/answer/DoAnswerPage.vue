@@ -192,7 +192,7 @@ const doSubmit = async () => {
 <style>
 .card-b {
   width: 1100px;
-  height: 500px;
+  height: 610px;
   margin: 0 auto;
   border-radius: 9px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 边框阴影 */

@@ -1,7 +1,7 @@
 <template>
   <a-card class="appCard" hoverable @click="doCardClick">
     <template #actions>
-      <span class="icon-hover" @click="doShare"> <IconShareInternal /> </span>
+      <span class="icon-hover" @click="doShare"><icon-launch /></span>
     </template>
     <template #cover>
       <div
@@ -101,13 +101,12 @@ const doShare = (e: Event) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  font-size: 18px;
   border-radius: 50%;
   transition: all 0.1s;
 }
 
 .icon-hover:hover {
-  background-color: rgb(var(--gray-2));
+  color: #3b63e5;
 }
 </style>

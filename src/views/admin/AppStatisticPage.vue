@@ -1,7 +1,9 @@
 <!-- 写法: 最外层先定义一个ID与页面的名称一致-->
 <template>
   <div id="appStatisticPage">
-    <h2>应用结果统计</h2>
+    <a-tooltip content="例如输入 1 " position="right">
+      <h2 style="width: 130px; margin-bottom: 15px">应用结果统计</h2>
+    </a-tooltip>
     <div class="search-bar">
       <a-input-search
         :style="{ width: '330px' }"

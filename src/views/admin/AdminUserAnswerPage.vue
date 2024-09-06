@@ -187,13 +187,16 @@ watchEffect(() => {
 const columns = [
   {
     title: "id",
+    width: 120,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "id",
   },
   {
     title: "选项",
     ellipsis: true,
     tooltip: true,
-    width: 250,
+    width: 200,
     dataIndex: "choices",
   },
   {
@@ -202,6 +205,7 @@ const columns = [
   },
   {
     title: "名称",
+    width: 150,
     dataIndex: "resultName",
   },
   {
@@ -222,17 +226,20 @@ const columns = [
     slotName: "appType",
   },
   {
+    title: "评分策略",
+    dataIndex: "scoringStrategy",
+    slotName: "scoringStrategy",
+  },
+  {
     title: "得分",
     dataIndex: "resultScore",
   },
   {
     title: "应用 id",
+    width: 170,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "appId",
-  },
-  {
-    title: "评分策略",
-    dataIndex: "scoringStrategy",
-    slotName: "scoringStrategy",
   },
   {
     title: "用户 id",

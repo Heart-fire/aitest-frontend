@@ -246,7 +246,7 @@ const columns = [
     title: "id",
     ellipsis: true,
     tooltip: true,
-    width: 100,
+    width: 120,
     dataIndex: "id",
   },
   {
@@ -289,10 +289,12 @@ const columns = [
   },
   {
     title: "审核人 id",
+    width: 200,
     dataIndex: "reviewerId",
   },
   {
     title: "用户 id",
+    width: 200,
     dataIndex: "userId",
   },
   {

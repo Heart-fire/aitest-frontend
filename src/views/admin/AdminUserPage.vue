@@ -39,7 +39,7 @@
     @page-change="onPageChange"
   >
     <template #userAvatar="{ record }">
-      <a-image width="64" :src="record.userAvatar" />
+      <a-image width="67" :src="record.userAvatar" />
     </template>
     <template #userRole="{ record }">
       <a-space>
@@ -80,8 +80,8 @@ import { dayjs } from "@arco-design/web-vue/es/_utils/date";
 import { useLoginUserStore } from "../../store/userStore";
 
 const scroll = {
-  x: 1700,
-  y: 1000,
+  x: 1800,
+  y: 1500,
 };
 const formSearchParams = ref<API.UserQueryRequest>({});
 
