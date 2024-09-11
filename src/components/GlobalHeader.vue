@@ -54,9 +54,9 @@
             <template #content>
               <p style="color: #2d2d2d">简单介绍:</p>
               <hr style="color: #566170" />
+              <p>管理员已将<b>应用统计</b>界面开放</p>
+              <hr style="color: #566170" />
               <p>
-                管理员已将<b>应用统计</b>界面开放
-                <hr style="color: #566170" />
                 SpringBoot+Redis+ChatGLM+RxJava+SSE(+Vue3+Arco
                 Design+Pinia)的Al答题应用平台。<br />
                 用户可基于AI快速生成题目并制作应用,经管理员审核后，可在线答题并基于多种评分算法或AI得到回答总结；管理员还可集中管理整站内容，并进行统计分析。
@@ -152,6 +152,14 @@
                   <div class="line">AI快速生成题目</div>
                 </div>
               </div>
+            </div>
+            <div>
+              <p>由于是体验版，管理员账号已开放🤓</p>
+              <hr />
+              <p>管理员账号：xinhuo 密码：12345678</p>
+              <p>普通账号：daitu 密码：12345678</p>
+              <hr />
+              <p>遵守规则，请勿删除❗❗❗</p>
             </div>
             <a-button type="primary" href="/user/login" class="button-one">
               立即登录

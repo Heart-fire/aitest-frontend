@@ -1,11 +1,16 @@
 // ----------------------------------------------------------全局自定义请求
 import axios from "axios";
 
+// 是否是开发环境
+export const isDev = process.env.NODE_ENV === "development";
+
+// 创建 Axios 实例
 const myAxios = axios.create({
-  baseURL: "http://localhost:8101", // 定义一个基础 URL 前缀，从而简化每次请求的 URL 定义
-  timeout: 60000, // ----------------配置默认超时时间，避免某些请求长时间无响应影响用户体验。
-  withCredentials: true, // ---------一定要写，否则无法在发请求时携带Cookie,就无法完成登录。
+  baseURL: isDev ? "http://localhost:8101" : "http://118.25.26.219:8101",
+  timeout: 60000,
+  withCredentials: true,
 });
+
 // 请求拦截器是在每次发送 HTTP 请求之前执行
 myAxios.interceptors.request.use(
   function (config) {
