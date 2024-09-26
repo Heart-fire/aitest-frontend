@@ -40,12 +40,15 @@ import {
 
 /**
  * 定义两个列表
+ * appAnswerCountList 是一个由 Vue 的 ref 函数定义的响应式变量，用于存储从后端接口返回的列表数据。
  */
 const appAnswerCountList = ref<API.AppAnswerCountDTO[]>([]);
 const appAnswerResultCountList = ref<API.AppAnswerResultCountDTO>([]);
 
 /**
  * 加载数据的函数
+ * 作用是通过调用 getAppAnswerCountUsingGet 函数获取答题统计数据，
+ * 并将成功获取到的数据存入 appAnswerCountList 中。
  */
 const loadAppAnswerCountData = async () => {
   const res = await getAppAnswerCountUsingGet();
@@ -55,7 +58,8 @@ const loadAppAnswerCountData = async () => {
     message.error("获取数据失败，" + res.data.message);
   }
 };
-
+// await 是用于处理 Promise 的关键字，
+// 它只能在 async 函数内部使用。它的主要作用是暂停代码的执行，直到 Promise 被解析（resolved）或拒绝（rejected）。
 const loadAppAnswerResultCountData = async (appId: string) => {
   if (!appId) {
     return;
@@ -71,6 +75,7 @@ const loadAppAnswerResultCountData = async (appId: string) => {
 };
 /**
  * 热门应用柱状图展示
+ * computed 可以根据其他响应式数据计算出一个新值，这个新值会自动更新，
  */
 const appAnswerCountOptions = computed(() => {
   return {
