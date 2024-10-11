@@ -18,6 +18,8 @@ import DoAnswerPage from "@/views/answer/DoAnswerPage.vue";
 import AnswerResultPage from "@/views/answer/AnswerResultPage.vue";
 import MyAnswerPage from "@/views/answer/MyAnswerPage.vue";
 import AppStatisticPage from "@/views/admin/AppStatisticPage.vue";
+// @ts-ignore
+import AIPage from "@/add/AIPage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -29,6 +31,11 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/add/app",
     name: "创建应用",
     component: AddAppPage,
+  },
+  {
+    path: "/add/ai",
+    name: "AI小助理",
+    component: AIPage,
   },
   {
     path: "/add/app/:id",
