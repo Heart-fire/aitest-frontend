@@ -37,6 +37,11 @@ export const routes: Array<RouteRecordRaw> = [
     name: "AI小助理",
     component: AIPage,
   },
+  // {
+  //   path: "/add/aiTwo",
+  //   name: "AI助理",
+  //   component: AItwo,
+  // },
   {
     path: "/add/app/:id",
     name: "修改应用",

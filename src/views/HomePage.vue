@@ -38,6 +38,9 @@
       </template>
     </a-list>
   </div>
+  <div>
+    <!-- 这里将会是聊天应用的显示位置 -->
+  </div>
 </template>
 
 <!--定义setup 就可以用编程式写法(JS)-->
@@ -48,7 +51,27 @@ import API from "@/api";
 import { listAppVoByPageUsingPost } from "@/api/appController";
 import message from "@arco-design/web-vue/es/message";
 import { REVIEW_STATUS_ENUM } from "@/constant/app";
+import { onMounted } from "vue";
 
+onMounted(() => {
+  // 创建 <script> 标签引入 Coze SDK 的脚本
+  const script = document.createElement("script");
+  script.src =
+    "https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.6/libs/cn/index.js";
+  script.onload = () => {
+    // 当脚本加载完成后，初始化聊天客户端
+    // eslint-disable-next-line no-undef
+    new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: "7424492261427380236",
+      },
+      componentProps: {
+        title: "Coze",
+      },
+    });
+  };
+  document.body.appendChild(script);
+});
 // 初始化搜索条件（不应该被修改）
 const initSearchParams = {
   current: 1,
