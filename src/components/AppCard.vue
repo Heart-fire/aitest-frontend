@@ -91,9 +91,16 @@ const doShare = (e: Event) => {
 
 <style scoped>
 .appCard {
+  margin: 5px;
   border-radius: 7px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.appCard:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 .icon-hover {

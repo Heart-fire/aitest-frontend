@@ -16,12 +16,12 @@
     </div>
     <v-chart
       :option="appAnswerResultCountOptions"
-      style="height: 350px; margin-left: 250px"
+      style="height: 350px; margin-left: 240px"
     />
     <h2>热门应用统计</h2>
     <v-chart
       :option="appAnswerCountOptions"
-      style="height: 500px; width: 1400px"
+      style="height: 500px; width: 1260px"
     />
   </div>
 </template>

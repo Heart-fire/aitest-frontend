@@ -4,7 +4,7 @@
       <a-layout-header class="header">
         <a-space>
           <img src="../assets/logo.png" class="logo" alt="image" />
-          <div>AI智汇答题平台</div>
+          <div>慧解AI平台</div>
         </a-space>
       </a-layout-header>
       <a-layout-content class="content">

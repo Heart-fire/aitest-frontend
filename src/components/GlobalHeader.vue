@@ -15,7 +15,7 @@
           <div class="title-bar">
             <img class="logo" src="../assets/logo.png" />
             <div class="title">
-              AI智汇答题
+              慧解AI
               <b>[体验版]</b>
             </div>
           </div>
@@ -129,9 +129,10 @@
           class="title-two"
           title="登录后您可以:"
           position="br"
+          trigger="click"
           style="width: 290px; height: 150px"
         >
-          <a-button type="primary" href="/user/login"> 登录</a-button>
+          <a-button type="primary" href=""> 登录</a-button>
           <template #content>
             <div class="tooltip">
               <div class="text">
@@ -159,7 +160,7 @@
               <p>管理员账号：xinhuo 密码：12345678</p>
               <p>普通账号：daitu 密码：12345678</p>
               <hr />
-              <p>遵守规则，请勿删除❗❗❗</p>
+              <p>总会相逢的，就像山川河流、万河归海。</p>
             </div>
             <a-button type="primary" href="/user/login" class="button-one">
               立即登录

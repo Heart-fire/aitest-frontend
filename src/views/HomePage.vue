@@ -66,7 +66,7 @@ onMounted(() => {
         bot_id: "7424492261427380236",
       },
       componentProps: {
-        title: "Coze",
+        title: "好久不见！",
       },
     });
   };
@@ -75,7 +75,7 @@ onMounted(() => {
 // 初始化搜索条件（不应该被修改）
 const initSearchParams = {
   current: 1,
-  pageSize: 8,
+  pageSize: 12,
   sortField: "createTime",
   sortOrder: "descend",
 };
