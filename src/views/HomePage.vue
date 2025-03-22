@@ -66,7 +66,7 @@ onMounted(() => {
         bot_id: "7424492261427380236",
       },
       componentProps: {
-        title: "好久不见！",
+        title: "HUIJIE AI",
       },
     });
   };

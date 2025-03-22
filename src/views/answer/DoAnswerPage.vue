@@ -1,46 +1,77 @@
 <template>
   <div id="doAnswerPage">
-    <a-card class="card-b">
-      <h1>{{ app.appName }}</h1>
-      <p>{{ app.appDesc }}</p>
-      <h2 style="margin-bottom: 16px">
-        {{ current }}、{{ currentQuestion?.title }}
-      </h2>
-      <div>
-        <a-radio-group
-          direction="vertical"
-          v-model="currentAnswer"
-          :options="questionOptions"
-          @change="doRadioChange"
-        />
-      </div>
-      <div style="margin-top: 24px">
-        <a-space size="large">
+    <div class="page-container">
+      <a-card class="question-card">
+        <div class="app-header">
+          <h1 class="app-title">{{ app.appName }}</h1>
+          <p class="app-desc">{{ app.appDesc }}</p>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-inner"
+            :style="{ width: `${(current / questionContent.length) * 100}%` }"
+          ></div>
+        </div>
+
+        <div class="question-container">
+          <div class="question-number">
+            问题 {{ current }}/{{ questionContent.length }}
+          </div>
+          <h2 class="question-title">{{ currentQuestion?.title }}</h2>
+
+          <div class="options-container">
+            <a-radio-group
+              direction="vertical"
+              v-model="currentAnswer"
+              :options="questionOptions"
+              @change="doRadioChange"
+              class="custom-radio-group"
+            />
+          </div>
+        </div>
+
+        <div class="navigation-buttons">
+          <a-button
+            v-if="current > 1"
+            class="nav-button prev-button"
+            @click="current -= 1"
+          >
+            <template #icon>
+              <icon-left />
+            </template>
+            上一题
+          </a-button>
+
           <a-button
             type="primary"
-            circle
+            class="nav-button next-button"
             v-if="current < questionContent.length"
             :disabled="!currentAnswer"
             @click="current += 1"
           >
             下一题
+            <template #icon>
+              <icon-right />
+            </template>
           </a-button>
+
           <a-button
             type="primary"
+            class="nav-button submit-button"
             v-if="current === questionContent.length"
             :loading="submitting"
-            circle
             :disabled="!currentAnswer"
             @click="doSubmit"
           >
-            {{ submitting ? "AI评分中🤖" : "查看结果" }}
+            {{ submitting ? "AI评分中..." : "查看结果" }}
+            <template #icon>
+              <icon-check />
+            </template>
           </a-button>
-          <a-button v-if="current > 1" circle @click="current -= 1">
-            上一题
-          </a-button>
-        </a-space>
-      </div>
-    </a-card>
+        </div>
+      </a-card>
+    </div>
   </div>
 </template>
 
@@ -62,6 +93,7 @@ import {
   addUserAnswerUsingPost,
   generateUserAnswerIdUsingGet,
 } from "@/api/userAnswerController";
+import { IconLeft, IconRight, IconCheck } from "@arco-design/web-vue/es/icon";
 
 interface Props {
   appId: string;
@@ -189,12 +221,171 @@ const doSubmit = async () => {
   submitting.value = false;
 };
 </script>
-<style>
-.card-b {
-  width: 1100px;
-  height: 610px;
+<style scoped>
+.page-container {
+  max-width: 1100px;
   margin: 0 auto;
-  border-radius: 9px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* 边框阴影 */
+}
+
+.question-card {
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.app-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.app-title {
+  margin-bottom: 8px;
+  color: #1d2129;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.app-desc {
+  margin-bottom: 0;
+  color: #86909c;
+  font-size: 16px;
+}
+
+.progress-bar {
+  height: 6px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  background-color: #f2f3f5;
+  border-radius: 3px;
+}
+
+.progress-inner {
+  height: 100%;
+  background: linear-gradient(90deg, #165dff, #722ed1);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.question-container {
+  margin-bottom: 30px;
+  padding: 20px 40px;
+}
+
+.question-number {
+  margin-bottom: 12px;
+  color: #86909c;
+  font-size: 16px;
+}
+
+.question-title {
+  margin-bottom: 30px;
+  color: #1d2129;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+.options-container {
+  margin-bottom: 35px;
+}
+
+.custom-radio-group :deep(.arco-radio) {
+  margin-right: 12px;
+}
+
+.custom-radio-group
+  :deep(.arco-radio-group-direction-vertical .arco-radio-group-item) {
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  color: #4e5969;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f7f8fa;
+  border: 2px solid #e5e6eb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.custom-radio-group
+  :deep(.arco-radio-group-direction-vertical .arco-radio-group-item:hover) {
+  color: #1d2129;
+  background-color: #f2f3ff;
+  border-color: #4080ff;
+  box-shadow: 0 4px 12px rgba(64, 128, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.custom-radio-group :deep(.arco-radio-checked .arco-radio-group-item) {
+  color: #1d2129;
+  font-weight: 500;
+  background-color: #f2f3ff;
+  border-color: #4080ff;
+}
+
+.custom-radio-group
+  :deep(.arco-radio-group-direction-vertical .arco-radio-group-item:hover) {
+  background-color: #f2f3ff;
+  border-color: #165dff;
+}
+
+.custom-radio-group :deep(.arco-radio-checked .arco-radio-group-item) {
+  background-color: #f2f3ff;
+  border-color: #165dff;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px 20px;
+}
+
+.nav-button {
+  min-width: 120px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.prev-button {
+  margin-right: auto;
+}
+
+.next-button,
+.submit-button {
+  margin-left: auto;
+}
+
+.nav-button:hover:not([disabled]) {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.nav-button:active:not([disabled]) {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 16px;
+  }
+
+  .question-container {
+    padding: 16px;
+  }
+
+  .navigation-buttons {
+    padding: 0 16px 16px;
+  }
+
+  .nav-button {
+    min-width: 100px;
+  }
 }
 </style>

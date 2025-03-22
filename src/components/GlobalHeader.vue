@@ -63,45 +63,38 @@
               </p>
             </template>
           </a-popover>
-          <a-popover trigger="hover" style="width: 120px">
+          <a-popover trigger="hover" class="custom-popover">
             <!-- ------------------------------------------头像部分-->
             <a-avatar
               :size="33"
               :image-url="loginUserStore.loginUser.userAvatar"
-              :style="{ marginRight: '1px' }"
+              class="custom-avatar"
             />
             <template #content>
-              <!--              <div class="menu-item">-->
+              <!--              <router-link to="/profile" class="menu-item">-->
               <!--                <a-link class="Tou">-->
               <!--                  <icon-user class="icon" />-->
               <!--                  个人信息-->
               <!--                </a-link>-->
-              <!--              </div>-->
-              <!--              <div class="menu-item">-->
+              <!--              </router-link>-->
+              <!--              <div class="menu-item" @click="goToHome">-->
               <!--                <a-link class="Tou">-->
               <!--                  <icon-home class="icon" />-->
-              <!--                  个人信息-->
+              <!--                  我的主页-->
               <!--                </a-link>-->
               <!--              </div>-->
-              <!--              <div class="menu-item">-->
+              <!--              <div class="menu-item" @click="goToSettings">-->
               <!--                <a-link class="Tou">-->
               <!--                  <icon-home class="icon" />-->
-              <!--                  个人信息-->
+              <!--                  设置中心-->
               <!--                </a-link>-->
               <!--              </div>-->
-              <a-popconfirm
-                content="是否登出"
-                position="bottom"
-                type="warning"
-                @ok="logout"
-              >
-                <div class="menu-item">
-                  <a-link status="danger">
-                    <icon-export class="icon" />
-                    退出登录
-                  </a-link>
-                </div>
-              </a-popconfirm>
+              <div class="menu-item" @click="logout">
+                <a-link status="danger" class="Tou">
+                  <icon-export class="icon" />
+                  退出登录
+                </a-link>
+              </div>
             </template>
           </a-popover>
           <!-- ----------------------------------------------------名字太长隐藏显示-->
@@ -160,7 +153,7 @@
               <p>管理员账号：xinhuo 密码：12345678</p>
               <p>普通账号：daitu 密码：12345678</p>
               <hr />
-              <p>总会相逢的，就像山川河流、万河归海。</p>
+              <!-- <p>总会相逢的，就像山川河流、万河归海。</p> -->
             </div>
             <a-button type="primary" href="/user/login" class="button-one">
               立即登录
@@ -332,5 +325,42 @@ const logout = async () => {
 
 .wifi:hover {
   color: #3b63e5;
+}
+
+.custom-popover {
+  width: 150px;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-avatar {
+  margin-right: 1px;
+  cursor: pointer;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px; /* 间距 */
+  border-radius: 4px; /* 圆角 */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5; /* 悬浮时的背景色 */
+}
+
+.menu-item a {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 4px 12px; /* 左右内边距 */
+  text-decoration: none; /* 去除下划线 */
+}
+
+.icon {
+  margin-right: 6px; /* 图标与文字的间距 */
 }
 </style>
