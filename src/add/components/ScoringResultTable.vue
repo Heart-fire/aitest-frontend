@@ -92,7 +92,7 @@ const formSearchParams = ref<API.ScoringResultQueryRequest>({});
 // 初始化搜索条件（不应该被修改）
 const initSearchParams = {
   current: 1,
-  pageSize: 6,
+  pageSize: 10,
   sortField: "createTime",
   sortOrder: "descend",
 };
@@ -190,6 +190,9 @@ const columns = [
   },
   {
     title: "描述",
+    width: 550,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "resultDesc",
   },
   {

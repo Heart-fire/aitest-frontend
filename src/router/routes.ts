@@ -20,6 +20,7 @@ import MyAnswerPage from "@/views/answer/MyAnswerPage.vue";
 import AppStatisticPage from "@/views/admin/AppStatisticPage.vue";
 // @ts-ignore
 import AIPage from "@/add/AIPage.vue";
+import Profile from "@/add/Profile.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -34,14 +35,17 @@ export const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/add/ai",
-    name: "AI小助理",
+    name: "答题生成",
     component: AIPage,
   },
-  // {
-  //   path: "/add/aiTwo",
-  //   name: "AI助理",
-  //   component: AItwo,
-  // },
+  {
+    path: "/add/profile",
+    name: "个人信息",
+    component: Profile,
+    meta: {
+      hideInMenu: true,
+    },
+  },
   {
     path: "/add/app/:id",
     name: "修改应用",

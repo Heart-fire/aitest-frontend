@@ -3,15 +3,41 @@
     <template #title>
       {{ title }}
     </template>
-    <h4 style="margin-top: 0">复制分享链接</h4>
-    <a-typography-paragraph copyable>{{ link }}</a-typography-paragraph>
-    <h4>手机扫码查看</h4>
-    <img :src="codeImg" />
+    <a-card :bordered="false" hoverable class="share-card">
+      <template #title>
+        <div class="card-title">
+          <icon-share />
+          <span>分享链接</span>
+        </div>
+      </template>
+      <a-input :model-value="link" readonly class="copy-input">
+        <template #suffix>
+          <a-tooltip content="复制链接">
+            <a-button type="text" @click="copyLink" class="copy-btn">
+              <icon-copy />
+            </a-button>
+          </a-tooltip>
+        </template>
+      </a-input>
+    </a-card>
+
+    <a-card :bordered="false" hoverable class="qrcode-card">
+      <template #title>
+        <div class="card-title">
+          <icon-qrcode />
+          <span>扫码查看</span>
+        </div>
+      </template>
+      <div class="qrcode-wrapper">
+        <img :src="codeImg" class="qrcode-img" alt="分享二维码" />
+      </div>
+    </a-card>
   </a-modal>
 </template>
 
 <script setup lang="ts">
 import { defineExpose, defineProps, ref, withDefaults } from "vue";
+import { IconShare, IconCopy, IconQrcode } from "@arco-design/web-vue/es/icon";
 // @ts-ignore
 import QRCode from "qrcode";
 import message from "@arco-design/web-vue/es/message";
@@ -66,4 +92,52 @@ QRCode.toDataURL(props.link)
   });
 </script>
 
-<style scoped></style>
+<style scoped>
+.share-card {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-text-1);
+  font-weight: 500;
+}
+
+.copy-input {
+  border-radius: 6px;
+}
+
+.copy-btn {
+  transition: color 0.2s;
+}
+
+.copy-btn:hover {
+  color: rgb(var(--primary-6));
+}
+
+.qrcode-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.qrcode-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background: var(--color-fill-2);
+  border-radius: 6px;
+}
+
+.qrcode-img {
+  width: 160px;
+  height: 160px;
+  padding: 8px;
+  background: white;
+  border: 1px solid var(--color-border-2);
+  border-radius: 4px;
+}
+</style>
