@@ -2,9 +2,8 @@
 <template>
   <div class="ai">
     <iframe
-      class="ai-2"
-      src="https://udify.app/chatbot/1ho0AJvDOU1grL56"
-      style="width: 100%; height: 100%; min-height: 500px"
+      src="https://udify.app/chatbot/CUCx4CW1HNoO3dWo"
+      style="width: 100%; height: 100%; min-height: 700px"
       frameborder="0"
       allow="microphone"
     >

@@ -173,11 +173,14 @@ const columns = [
   },
   {
     title: "名称",
+    width: 150,
     dataIndex: "resultName",
   },
   {
     title: "描述",
-    width: 250,
+    width: 300,
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "resultDesc",
   },
   {
@@ -187,6 +190,7 @@ const columns = [
   },
   {
     title: "结果属性",
+    width: 250,
     dataIndex: "resultProp",
   },
   {
@@ -195,10 +199,13 @@ const columns = [
   },
   {
     title: "应用 id",
+    width: 200,
     dataIndex: "appId",
   },
   {
     title: "用户 id",
+    ellipsis: true,
+    tooltip: true,
     dataIndex: "userId",
   },
   {

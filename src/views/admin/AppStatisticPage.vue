@@ -21,7 +21,7 @@
     <h2>热门应用统计</h2>
     <v-chart
       :option="appAnswerCountOptions"
-      style="height: 500px; width: 1260px"
+      style="height: 500px; width: 1200px"
     />
   </div>
 </template>
@@ -86,8 +86,8 @@ const appAnswerCountOptions = computed(() => {
       },
     },
     grid: {
-      left: "3%",
-      right: "4%",
+      left: "4%",
+      right: "5%",
       bottom: "3%",
       containLabel: true,
     },
